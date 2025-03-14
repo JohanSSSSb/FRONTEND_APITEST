@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Management</title>
+    <link rel="stylesheet" href="style_johan.css">
+</head>
+<body>
+    <h1>FRONT_END TEST</h1>
+    
+    <form id="clientForm">
+        <input type="hidden" id="clientId">
+        <input type="email" id="clientEmail" placeholder="Email" required>
+        <input type="text" id="clientName" placeholder="Client Name" required>
+        <input type="text" id="clientCity" placeholder="City" required>
+        <input type="text" id="clientTelephone" placeholder="Telephone" required>
+        
+        
+        <button type="submit">Save</button>
+    </form>
+    
+    <table>
+        <thead>
+           
+            <tr>  
+                <th>TEST BACKEND  ENTER THE VAUES</th>
+            </tr>
+
+        </thead>
+        <tbody id="clientList"></tbody>
+    </table>
+    
+    <script src="test_johan.js"></script>
+</body>
+</html>
