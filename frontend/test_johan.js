@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const clientForm = document.getElementById("clientForm");
     const clientList = document.getElementById("clientList");
-    const apiUrl = "http://localhost/API-REST-main/api-rest"; 
+    const apiUrl = "http://localhost/FRONTEND_APITEST/api-rest"; 
 
     function fetchClients() {
         fetch(`${apiUrl}/get_all_client.php`)
