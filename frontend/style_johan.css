@@ -10,13 +10,13 @@ body {
     margin: 0;
 }
 
-/* Título */
+
 h1 {
     color: #333;
     margin-bottom: 20px;
 }
 
-/* Formulario */
+
 form {
     background: white;
     padding: 20px;
@@ -49,7 +49,7 @@ button:hover {
     background: #218838;
 }
 
-/* Tabla */
+
 table {
     margin-top: 20px;
     border-collapse: collapse;
