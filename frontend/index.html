@@ -8,29 +8,36 @@
 </head>
 <body>
     <h1>FRONT_END TEST</h1>
-    
+
     <form id="clientForm">
         <input type="hidden" id="clientId">
+        <label for="clientEmail">Email:</label>
         <input type="email" id="clientEmail" placeholder="Email" required>
+        <label for="clientName">Client Name:</label>
         <input type="text" id="clientName" placeholder="Client Name" required>
+        <label for="clientCity">City:</label>
         <input type="text" id="clientCity" placeholder="City" required>
+        <label for="clientTelephone">Telephone:</label>
         <input type="text" id="clientTelephone" placeholder="Telephone" required>
-        
-        
+
         <button type="submit">Save</button>
+        <button type="button" id="cancelButton">Cancel</button>
     </form>
-    
+
     <table>
         <thead>
-           
-            <tr>  
-                <th>TEST BACKEND  ENTER THE VAUES</th>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Telephone</th>
+                <th>Actions</th>
             </tr>
-
         </thead>
         <tbody id="clientList"></tbody>
     </table>
-    
+
     <script src="test_johan.js"></script>
 </body>
 </html>
