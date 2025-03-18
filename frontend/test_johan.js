@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const clientForm = document.getElementById("clientForm");
     const clientList = document.getElementById("clientList");
-    const apiUrl = "http://localhost/FRONTEND_APITEST/api-rest"; 
+    const cancelButton = document.getElementById("cancelButton");
+    const apiUrl = "http://localhost/FRONTEND_APITEST/api-rest";
 
     function fetchClients() {
         fetch(`${apiUrl}/get_all_client.php`)
@@ -23,7 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     `;
                     clientList.appendChild(row);
                 });
-            });
+            })
+            .catch(error => console.error("Error fetching clients:", error));
     }
 
     clientForm.addEventListener("submit", function (e) {
@@ -34,14 +36,27 @@ document.addEventListener("DOMContentLoaded", function () {
         const clientCity = document.getElementById("clientCity").value;
         const clientTelephone = document.getElementById("clientTelephone").value;
 
-        const url = `${apiUrl}/${clientId ? "update_client.php" : "create_client.php"}?id=${clientId}&name=${encodeURIComponent(clientName)}&email=${encodeURIComponent(clientEmail)}&city=${encodeURIComponent(clientCity)}&telephone=${encodeURIComponent(clientTelephone)}`;
-        
-        fetch(url)
-            .then(response => response.json())
-            .then(() => {
-                clientForm.reset();
-                fetchClients();
-            });
+        const url = clientId ? `${apiUrl}/update_client.php` : `${apiUrl}/create_client.php`;
+
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: clientId,
+                name: clientName,
+                email: clientEmail,
+                city: clientCity,
+                telephone: clientTelephone
+            })
+        })
+        .then(response => response.json())
+        .then(() => {
+            clientForm.reset();
+            fetchClients();
+        })
+        .catch(error => console.error("Error saving client:", error));
     });
 
     window.editClient = function (id, name, email, city, telephone) {
@@ -53,10 +68,15 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     window.deleteClient = function (id) {
-        fetch(`${apiUrl}/delete_client.php?id=${id}`)
+        fetch(`${apiUrl}/delete_client.php?id=${id}`, { method: "DELETE" })
             .then(response => response.json())
-            .then(() => fetchClients());
+            .then(() => fetchClients())
+            .catch(error => console.error("Error deleting client:", error));
     };
+
+    cancelButton.addEventListener("click", function () {
+        clientForm.reset();
+    });
 
     fetchClients();
 });
